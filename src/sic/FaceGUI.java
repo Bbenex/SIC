@@ -8,6 +8,7 @@ package sic;
 import java.awt.AWTException;
 import java.awt.Desktop;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
@@ -51,6 +52,11 @@ public class FaceGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        addWindowStateListener(new java.awt.event.WindowStateListener() {
+            public void windowStateChanged(java.awt.event.WindowEvent evt) {
+                formWindowStateChanged(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sic/images/zombie.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -216,6 +222,16 @@ public class FaceGUI extends javax.swing.JFrame {
     private void jLabel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseDragged
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel1MouseDragged
+
+    private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowStateChanged
+        // TODO add your handling code here:
+        
+        
+        if(evt.getNewState() == Frame.ICONIFIED){
+            TrayIconDemo.createAndShowGUI();
+            super.setVisible(false);
+        }
+    }//GEN-LAST:event_formWindowStateChanged
 
     /**
      * @param args the command line arguments
